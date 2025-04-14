@@ -12,7 +12,7 @@ Minimal working example using DJI Cloud API.
 3. Connect your DJI Smart Controller to the same local network your PC is in (in case of laptop I recommend creating local hotspot).
 4. Set env variable `HOST_ADDR`, `USERNAME`, `PASSWORD` to your IP which will be visible for controller and run `./cloud_api.http.py`
 5. Set env variable `HOST_ADDR` and run `./cloud_api_mqtt.py`
-
+clear
 
 ### Conecting the controller
 

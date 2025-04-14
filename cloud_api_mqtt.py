@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+'''#!/usr/bin/env python3'''
 
 import os
 import json
@@ -9,11 +9,11 @@ from importlib.metadata import version
 import paho
 import paho.mqtt.client as mqtt
 
-host_addr = os.environ["HOST_ADDR"]
+host_addr = "192.168.88.14"
 
 
 # The callback for when the client receives a CONNACK response from the server.
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, rc,properties = None):
     print("Connected with result code " + str(rc))
 
     # Subscribing in on_connect() means that if we lose the connection and
@@ -23,6 +23,7 @@ def on_connect(client, userdata, flags, rc):
 
 # Print interesting bits from message
 def handle_osd_message(message: dict):
+    print("here")
     data = message["data"]
     lat = data.pop("latitude", None)
     lon = data.get("longitude", None)
@@ -60,6 +61,12 @@ def on_message(client: mqtt.Client, userdata, msg: mqtt.MQTTMessage):
         print("✅published")
     elif msg.topic.endswith("osd") and msg.topic.startswith("thing"):
         handle_osd_message(message)
+    # print(f"📨 Got msg: {msg.topic}")
+    # try:
+    #     message = json.loads(msg.payload.decode("utf-8"))
+    #     print("🔎 Payload:", json.dumps(message, indent=2))
+    # except Exception as e:
+    #     print(f"❌ Error decoding message: {e}")
 
 PAHO_MAIN_VER = int(version("paho-mqtt").split(".")[0])
 if PAHO_MAIN_VER == 1:
