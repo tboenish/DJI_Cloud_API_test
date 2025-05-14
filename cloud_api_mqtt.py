@@ -9,7 +9,7 @@ from importlib.metadata import version
 import paho
 import paho.mqtt.client as mqtt
 
-host_addr = "192.168.88.14"
+host_addr = "192.168.88.5"
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -72,7 +72,8 @@ PAHO_MAIN_VER = int(version("paho-mqtt").split(".")[0])
 if PAHO_MAIN_VER == 1:
     client = mqtt.Client(transport="tcp")
 if PAHO_MAIN_VER == 2:
-    client = mqtt.Client(paho.mqtt.enums.CallbackAPIVersion.VERSION2, transport="tcp")
+    #print("here")
+    client = mqtt.Client(paho.mqtt.enums.CallbackAPIVersion.VERSION2,client_id="python-client", transport="tcp")
 client.on_connect = on_connect
 client.on_message = on_message
 

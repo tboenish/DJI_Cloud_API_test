@@ -5,9 +5,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-host_addr = "192.168.88.14"
-username = ""
-password = ""
+host_addr = "192.168.88.5"
+username = "admin"
+password = "Hockey/28"
 
 app = FastAPI()
 
