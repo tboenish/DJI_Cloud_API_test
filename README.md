@@ -8,11 +8,12 @@ Minimal working example using DJI Cloud API.
 2. Install docker and setup `emqx` (MQTT server)
     - `docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083  emqx:5.0.20`
     - open http://localhost:18083/ to setup admin account l: `admin` p: `public`
-    - create user account (I am not sure whether it is needed, you can use admin account)
+    - create new account if prompted after first login. This new username and password will be used in the username and password fields in `cloud_api_http.py`
 3. Connect your DJI Smart Controller to the same local network your PC is in (in case of laptop I recommend creating local hotspot).
-4. Set env variable `HOST_ADDR`, `USERNAME`, `PASSWORD` to your IP which will be visible for controller and run `./cloud_api.http.py`
-5. Set env variable `HOST_ADDR` and run `./cloud_api_mqtt.py`
-clear
+4. In login.html replace APP_ID, LICENSE, APP_KEY with your DJI Developer Cloud API credentials
+5. In `./cloud_api.http.py` Set the env variables `HOST_ADDR` = your IP address , `USERNAME`= your EMQX dashboard username, `PASSWORD` = your
+    EMQX dashboard password and run `./cloud_api.http.py`
+6. In `./cloud_api_mqtt.py` set env variable `HOST_ADDR` = your IP address and run `./cloud_api_mqtt.py`
 
 ### Conecting the controller
 

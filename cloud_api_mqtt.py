@@ -9,7 +9,7 @@ from importlib.metadata import version
 import paho
 import paho.mqtt.client as mqtt
 
-host_addr = "192.168.88.5"
+host_addr = "192.168.88.11"
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -23,7 +23,7 @@ def on_connect(client, userdata, flags, rc,properties = None):
 
 # Print interesting bits from message
 def handle_osd_message(message: dict):
-    print("here")
+    #print("here")
     data = message["data"]
     lat = data.pop("latitude", None)
     lon = data.get("longitude", None)
@@ -72,7 +72,6 @@ PAHO_MAIN_VER = int(version("paho-mqtt").split(".")[0])
 if PAHO_MAIN_VER == 1:
     client = mqtt.Client(transport="tcp")
 if PAHO_MAIN_VER == 2:
-    #print("here")
     client = mqtt.Client(paho.mqtt.enums.CallbackAPIVersion.VERSION2,client_id="python-client", transport="tcp")
 client.on_connect = on_connect
 client.on_message = on_message
